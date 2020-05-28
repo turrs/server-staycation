@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col">
+    <div class="card shadow mb-4 mt-2">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Feature Item</h6>
+      </div>
+      <div class="card-body">
+        <form
+          action="/admin/item/feature"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              placeholder="Enter name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">QTY</label>
+            <input
+              type="number"
+              class="form-control"
+              name="qty"
+              placeholder="Enter qty"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Image</label>
+            <input type="file" class="form-control" name="image" required />
+          </div>
+          <div class="modal-footer">      
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow mb-4 mt-2">
+        <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Feature Item</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table
+                  class="table table-bordered"
+                  id="dataTable"
+                  width="100%"
+                  cellspacing="0"
+                >
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>QTY</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>  <% for(let i = 0 ; i < feature.length; i++){ %>
+                    <tr>
+                      <td><%= 1 + i %></td>
+                      <td><%= feature[i].name %></td>
+                      <td><%= feature[i].qty %></td>
+                      <td>
+                        <img
+                          src="http://localhost:3000/<%= feature[i].imageUrl %>"
+                          alt="imageUrl"
+                          width="70px"
+                          height="70px"
+                        />
+                      </td>
+                      <td><form
+                        action="/admin/item/<%= itemDelete %>/feature/<%= feature[i].id %>?_method=DELETE"
+                        method="POST"
+                      >
+                      <input type="hidden" value="<%= feature[i].id %>"/>
+                        <button class="btn btn-danger btn-circle btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form></td>
+                    </tr>
+                    <% } %></tbody>
+                </table>
+              </div>
+        </div>
+      </div>
+    </div>
+</div>

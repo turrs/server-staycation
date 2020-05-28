@@ -1,0 +1,101 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"></h6>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#addModal"
+    >
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <!-- Button trigger modal -->
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0 ; i < category.length; i++){ %>
+          <tr>
+            <td><%= 1 + i %></td>
+            <td><%= category[i].name %></td>
+            <td>
+              <a
+                href=""
+                data-toggle="modal"
+                data-target="#editModal<%= category[i].id %>"
+                class="btn btn-warning"
+                >Edit</i
+              ></a>
+              <div
+                class="modal fade"
+                id="editModal<%= category[i].id %>"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              ><!-- Modal -->
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Data Category</h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/admin/category?_method=PUT" method="POST">
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input
+                            type="text"
+                            class="form-control name"
+                            
+                            name="name"
+                            placeholder="<%= category[i].name %>"
+                            required
+                          />
+                          </div>                       
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" class="id" name="id" value="<%= category[i].id %>">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+                <form action="/admin/category/<%= category[i].id %>?_method=DELETE" method="POST">
+                  <button class="btn btn-danger"
+                    >Hapus</i
+                  ></button>
+                </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
