@@ -134,8 +134,6 @@ module.exports = {
     const bank = await Bank.find();
     console.log(bank);
     res.render("admin/bank/view_bank", {
-      category,
-      alert,
       title: "Staycation | Bank",
       user: req.session.user,
       bank,
@@ -213,6 +211,7 @@ module.exports = {
         category,
         categoryName,
         activity,
+        user: req.session.user,
         feature,
         itemDelete,
       });
