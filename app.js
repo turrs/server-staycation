@@ -8,8 +8,7 @@ const methodeOveride = require("method-override");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const apiRouter = require("./routes/api");
-var cors = require('cors');
-app.use(cors());
+
 mongoose.connect(
   "mongodb+srv://fatur:bwamern@cluster0-tpqn2.mongodb.net/test?retryWrites=true&w=majority",
   {
@@ -58,6 +57,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
+
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
